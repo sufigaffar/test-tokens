@@ -1,9 +1,12 @@
 name: Sync and Publish Tokens
 on: [push]
 jobs:
-  Explore-GitHub-Actions:
+  sync-publish-tokens:
     runs-on: ubuntu-latest
     env:
       AUTH_TOKEN: ${{ secrets.AUTH_TOKEN }}
     steps:
-      - run: echo "Test"
+      - run: npm install -g https://github.com/sufigaffar/zh-cli
+      - run: zh-cli auth "$AUTH_TOKEN"
+      - run: zh-cli sync 133
+      - run: zh-cli publish 133

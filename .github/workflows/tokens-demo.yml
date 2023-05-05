@@ -5,8 +5,9 @@ jobs:
     runs-on: ubuntu-latest
     env:
       AUTH_TOKEN: ${{ secrets.AUTH_TOKEN }}
+      TOKEN_SET_ID: ${{ vars.TOKEN_SET_ID }}
     steps:
       - run: npm install -g https://github.com/sufigaffar/zh-cli
       - run: zh-cli auth "$AUTH_TOKEN"
-      - run: zh-cli sync 133
-      - run: zh-cli publish 133
+      - run: zh-cli sync "$TOKEN_SET_ID"
+      - run: zh-cli publish "$TOKEN_SET_ID"
